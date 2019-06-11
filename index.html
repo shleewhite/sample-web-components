@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Sample Web Components</title>
+  <link rel="stylesheet" type="text/css" href="./css/salesforce-lightning-design-system.min.css">
+  <link rel="stylesheet" type="text/css" href="./css/index.css">
+  <script src="./components/open-input.js"></script>
+  <script src="./components/open-input-only.js"></script>
+  <script src="./components/list-item-implicit.js"></script>
+  <script src="./components/list-item-explicit.js"></script>
+  <script src="./components/input-html-attr.js"></script>
+  <script src="./components/input-camel-attr.js"></script>
+</head>
+
+<body class="mal">
+  <h1 class="slds-text-heading_large pvm">Sample Web Components</h1>
+  <h2 class="slds-text-heading_medium pvm fw-bold">Input & Label with Open Shadow: Accessible</h2>
+  <div class="slds-grid bg-white">
+    <div class="slds-col slds-size_1-of-2 bas">
+      <div class="mal">
+        <open-input></open-input>
+      </div>
+    </div>
+    <div class="slds-col slds-size_1-of-2 bas">
+      <pre>
+        <code>
+          <<span>open-input</span>>
+            #shadow-root (open)
+              <<span>label for="open-wow">Name<</span>/label>
+              <<span>input id="open-wow" type="text" /</span>>
+          <<span>/open-input</span>>
+        </code>
+      </pre>
+    </div>
+  </div>
+
+  <h2 class="slds-text-heading_medium pvm fw-bold">Input Only with Open Shadow: Inaccessible</h2>
+  <div class="slds-grid bg-white">
+    <div class="slds-col slds-size_1-of-2 bas">
+      <div class="mal">
+        <label for="wow">Name</label>
+        <open-input-only></open-input-only>
+      </div>
+    </div>
+    <div class="slds-col slds-size_1-of-2 bas">
+      <pre>
+        <code>
+          <<span>label for="wow">Name<</span>/label>
+          <<span>open-input</span>>
+            #shadow-root (open)
+              <<span>input id="wow" type="text" /</span>>
+          <<span>/open-input</span>>
+        </code>
+      </pre>
+    </div>
+  </div>
+
+  <h2 class="slds-text-heading_medium pvm fw-bold">List with Explicit Roles: Accessible</h2>
+  <div class="slds-grid bg-white">
+    <div class="slds-col slds-size_1-of-2 bas">
+      <div class="mal">
+        <div role="list">
+          <list-item-explicit content="Butter"></list-item-explicit>
+          <list-item-explicit content="Sugar"></list-item-explicit>
+          <list-item-explicit content="Eggs"></list-item-explicit>
+        </div>
+      </div>
+    </div>
+    <div class="slds-col slds-size_1-of-2 bas">
+      <pre>
+        <code>
+          <<span>div role="list"</span>>
+            <<span>list-item-explicit content="Butter"</span>>
+              #shadow-root (open)
+                <<span>div role="listitem"</span>>Butter<<span>/div</span>>
+            <<span>/list-item-explicit</span>>
+            <<span>list-item-explicit content="Sugar"</span>>
+              #shadow-root (open)
+                <<span>div role="listitem"</span>>Sugar<<span>/div</span>>
+            <<span>/list-item-explicit</span>>
+            <<span>list-item-explicit content="Eggs"</span>>
+              #shadow-root (open)
+                <<span>div role="listitem"</span>>Eggs<<span>/div</span>>
+            <<span>/list-item-explicit</span>>
+          <<span>/div</span>>
+        </code>
+      </pre>
+    </div>
+  </div>
+
+  <h2 class="slds-text-heading_medium pvm fw-bold">List with Implicit Roles: Inaccessible</h2>
+  <div class="slds-grid bg-white">
+    <div class="slds-col slds-size_1-of-2 bas">
+      <div class="mal">
+        <ul>
+          <list-item-implicit content="Flour"></list-item-implicit>
+          <list-item-implicit content="Baking Soda"></list-item-implicit>
+          <list-item-implicit content="Salt"></list-item-implicit>
+        </ul>
+      </div>
+    </div>
+    <div class="slds-col slds-size_1-of-2 bas">
+      <pre>
+        <code>
+          <<span>ul</span>>
+            <<span>list-item-implicit content="Flour"</span>>
+              #shadow-root (open)
+                <<span>li</span>>Flour<<span>/li</span>>
+            <<span>/list-item-implicit</span>>
+            <<span>list-item-implicit content="Baking Soda"</span>>
+              #shadow-root (open)
+                <<span>li</span>>Baking Soda<<span>/li</span>>
+            <<span>/list-item-implicit</span>>
+            <<span>list-item-implicit content="Salt"</span>>
+              #shadow-root (open)
+                <<span>li</span>>Salt<<span>/li</span>>
+            <<span>/list-item-explicit</span>>
+          <<span>/ul</span>>
+        </code>
+      </pre>
+    </div>
+  </div>
+
+  <h2 class="slds-text-heading_medium pvm fw-bold">Input with Global HTML Attribute Property (no getter/setter):
+    Inaccessible</h2>
+  <div class="slds-grid bg-white">
+    <div class="slds-col slds-size_1-of-2 bas">
+      <div class="mal">
+        <input-html-attr aria-checked="true"></input-html-attr>
+      </div>
+    </div>
+    <div class="slds-col slds-size_1-of-2 bas">
+      <pre>
+        <code>
+          <<span>input-html-attr aria-checked="true"</span>>
+            #shadow-root
+              <<span>input type="checkbox" id="html-wow" aria-checked="true"</span>><<span>/input</span>>
+              <<span>label for="html-wow"</span>>Sign me up!<<span>/label</span>>
+          <<span>/input-html-attr</span>>
+        </code>
+      </pre>
+    </div>
+  </div>
+
+  <h2 class="slds-text-heading_medium pvm fw-bold">Input with Camel Case Property: Accessible</h2>
+  <div class="slds-grid bg-white">
+    <div class="slds-col slds-size_1-of-2 bas">
+      <div class="mal">
+        <input-camel-attr ariaChecked="true"></input-camel-attr>
+      </div>
+    </div>
+    <div class="slds-col slds-size_1-of-2 bas">
+      <pre>
+        <code>
+          <<span>input-html-attr ariaChecked="true"</span>>
+            #shadow-root
+              <<span>input type="checkbox" id="camel-wow" aria-checked="true"</span>><<span>/input</span>>
+              <<span>label for="camel-wow"</span>>Sign me up!<<span>/label</span>>
+          <<span>/input-html-attr</span>>
+        </code>
+      </pre>
+    </div>
+  </div>
+
+</body>
+
+</html>
