@@ -11,7 +11,7 @@
   <script src="./components/list-item-implicit.js"></script>
   <script src="./components/list-item-explicit.js"></script>
   <script src="./components/input-html-attr.js"></script>
-  <script src="./components/input-camel-attr.js"></script>
+  <script src="./components/input-attr-a11y.js"></script>
 </head>
 
 <body class="mal">
@@ -144,21 +144,24 @@
     </div>
   </div>
 
-  <h2 class="slds-text-heading_medium pvm fw-bold">Input with Camel Case Property: Accessible</h2>
+  <h2 class="slds-text-heading_medium pvm fw-bold">WIP - Input with Camel Case Property: Accessible</h2>
   <div class="slds-grid bg-white">
     <div class="slds-col slds-size_1-of-2 bas">
       <div class="mal">
-        <input-camel-attr ariaChecked="true"></input-camel-attr>
+        <input-attr-a11y></input-attr-a11y>
+        <script>
+          document.querySelector('input-attr-a11y')['aria-checked'] = true;
+        </script>
       </div>
     </div>
     <div class="slds-col slds-size_1-of-2 bas">
       <pre>
         <code>
-          <<span>input-html-attr ariaChecked="true"</span>>
+          <<span>input-attr-a11y ariaChecked="true"</span>>
             #shadow-root
               <<span>input type="checkbox" id="camel-wow" aria-checked="true"</span>><<span>/input</span>>
               <<span>label for="camel-wow"</span>>Sign me up!<<span>/label</span>>
-          <<span>/input-html-attr</span>>
+          <<span>/input-attr-a11y</span>>
         </code>
       </pre>
     </div>
