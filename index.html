@@ -16,157 +16,213 @@
 
 <body class="mal">
   <h1 class="slds-text-heading_large pvm">Sample Web Components</h1>
-  <h2 class="slds-text-heading_medium pvm fw-bold">Input & Label with Open Shadow: Accessible</h2>
-  <div class="slds-grid bg-white">
-    <div class="slds-col slds-size_1-of-2 bas">
-      <div class="mal">
-        <open-input></open-input>
-      </div>
-    </div>
-    <div class="slds-col slds-size_1-of-2 bas">
-      <pre>
-        <code>
-          <<span>open-input</span>>
-            #shadow-root (open)
-              <<span>label for="open-wow">Name<</span>/label>
-              <<span>input id="open-wow" type="text" /</span>>
-          <<span>/open-input</span>>
-        </code>
-      </pre>
-    </div>
-  </div>
-
-  <h2 class="slds-text-heading_medium pvm fw-bold">Input Only with Open Shadow: Inaccessible</h2>
-  <div class="slds-grid bg-white">
-    <div class="slds-col slds-size_1-of-2 bas">
-      <div class="mal">
-        <label for="wow">Name</label>
-        <open-input-only></open-input-only>
-      </div>
-    </div>
-    <div class="slds-col slds-size_1-of-2 bas">
-      <pre>
-        <code>
-          <<span>label for="wow">Name<</span>/label>
-          <<span>open-input</span>>
-            #shadow-root (open)
-              <<span>input id="wow" type="text" /</span>>
-          <<span>/open-input</span>>
-        </code>
-      </pre>
-    </div>
-  </div>
-
-  <h2 class="slds-text-heading_medium pvm fw-bold">List with Explicit Roles: Accessible</h2>
-  <div class="slds-grid bg-white">
-    <div class="slds-col slds-size_1-of-2 bas">
-      <div class="mal">
-        <div role="list">
-          <list-item-explicit content="Butter"></list-item-explicit>
-          <list-item-explicit content="Sugar"></list-item-explicit>
-          <list-item-explicit content="Eggs"></list-item-explicit>
-        </div>
-      </div>
-    </div>
-    <div class="slds-col slds-size_1-of-2 bas">
-      <pre>
-        <code>
-          <<span>div role="list"</span>>
-            <<span>list-item-explicit content="Butter"</span>>
-              #shadow-root (open)
-                <<span>div role="listitem"</span>>Butter<<span>/div</span>>
-            <<span>/list-item-explicit</span>>
-            <<span>list-item-explicit content="Sugar"</span>>
-              #shadow-root (open)
-                <<span>div role="listitem"</span>>Sugar<<span>/div</span>>
-            <<span>/list-item-explicit</span>>
-            <<span>list-item-explicit content="Eggs"</span>>
-              #shadow-root (open)
-                <<span>div role="listitem"</span>>Eggs<<span>/div</span>>
-            <<span>/list-item-explicit</span>>
-          <<span>/div</span>>
-        </code>
-      </pre>
-    </div>
-  </div>
-
-  <h2 class="slds-text-heading_medium pvm fw-bold">List with Implicit Roles: Inaccessible</h2>
-  <div class="slds-grid bg-white">
-    <div class="slds-col slds-size_1-of-2 bas">
-      <div class="mal">
-        <ul>
-          <list-item-implicit content="Flour"></list-item-implicit>
-          <list-item-implicit content="Baking Soda"></list-item-implicit>
-          <list-item-implicit content="Salt"></list-item-implicit>
-        </ul>
-      </div>
-    </div>
-    <div class="slds-col slds-size_1-of-2 bas">
-      <pre>
-        <code>
-          <<span>ul</span>>
-            <<span>list-item-implicit content="Flour"</span>>
-              #shadow-root (open)
-                <<span>li</span>>Flour<<span>/li</span>>
-            <<span>/list-item-implicit</span>>
-            <<span>list-item-implicit content="Baking Soda"</span>>
-              #shadow-root (open)
-                <<span>li</span>>Baking Soda<<span>/li</span>>
-            <<span>/list-item-implicit</span>>
-            <<span>list-item-implicit content="Salt"</span>>
-              #shadow-root (open)
-                <<span>li</span>>Salt<<span>/li</span>>
-            <<span>/list-item-explicit</span>>
-          <<span>/ul</span>>
-        </code>
-      </pre>
-    </div>
-  </div>
-
-  <h2 class="slds-text-heading_medium pvm fw-bold">Input with Global HTML Attribute Property (no getter/setter):
-    Inaccessible</h2>
-  <div class="slds-grid bg-white">
-    <div class="slds-col slds-size_1-of-2 bas">
-      <div class="mal">
-        <input-html-attr aria-checked="true"></input-html-attr>
-      </div>
-    </div>
-    <div class="slds-col slds-size_1-of-2 bas">
-      <pre>
-        <code>
-          <<span>input-html-attr aria-checked="true"</span>>
-            #shadow-root
-              <<span>input type="checkbox" id="html-wow" aria-checked="true"</span>><<span>/input</span>>
-              <<span>label for="html-wow"</span>>Sign me up!<<span>/label</span>>
-          <<span>/input-html-attr</span>>
-        </code>
-      </pre>
-    </div>
-  </div>
-
-  <h2 class="slds-text-heading_medium pvm fw-bold">WIP - Input with Camel Case Property: Accessible</h2>
-  <div class="slds-grid bg-white">
-    <div class="slds-col slds-size_1-of-2 bas">
-      <div class="mal">
-        <input-attr-a11y></input-attr-a11y>
-        <script>
-          document.querySelector('input-attr-a11y')['aria-checked'] = true;
-        </script>
-      </div>
-    </div>
-    <div class="slds-col slds-size_1-of-2 bas">
-      <pre>
-        <code>
-          <<span>input-attr-a11y ariaChecked="true"</span>>
-            #shadow-root
-              <<span>input type="checkbox" id="camel-wow" aria-checked="true"</span>><<span>/input</span>>
-              <<span>label for="camel-wow"</span>>Sign me up!<<span>/label</span>>
-          <<span>/input-attr-a11y</span>>
-        </code>
-      </pre>
-    </div>
-  </div>
-
+  <p>All components built with open shadow DOM.</p>
+  <table>
+    <thead>
+      <th scope="col">Name</th>
+      <th scope="col">Component</th>
+      <th scope="col">Code</th>
+      <th scope="col">Rendered HTML</th>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Input & Label: Accessible</td>
+        <td>
+          <open-input></open-input>
+        </td>
+        <td>
+          <pre>
+            <code>
+              &lt;open-input&gt;&lt;/open-input&gt;
+            </code>
+          </pre>
+        </td>
+        <td>
+          <pre>
+            <code>
+              &lt;open-input&gt;
+                #shadow-root (open)
+                  &lt;label for="open-wow"&gt;Name&lt;/label&gt;
+                  &lt;input id="open-wow" type="text" /&gt;
+              &lt;/open-input&gt;
+            </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Input Only: Inaccessible</th>
+        <td>
+          <label for="wow">Name</label>
+          <open-input-only></open-input-only>
+        </td>
+        <td>
+          <pre>
+            <code>
+                &lt;label for="wow"&gt;Name&lt;/label&gt;
+                &lt;open-input-only&gt;&lt;/open-input-only&gt;
+            </code>
+          </pre>
+        </td>
+        <td>
+          <pre>
+            <code>
+                &lt;label for="wow"&gt;Name&lt;/label&gt;
+                &lt;open-input&gt;
+                  #shadow-root (open)
+                    &lt;input id="wow" type="text" /&gt;
+                &lt;/open-input&gt;    
+            </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">List with Explicit Roles: Accessible</th>
+        <td>
+          <div role="list">
+            <list-item-explicit content="Butter"></list-item-explicit>
+            <list-item-explicit content="Sugar"></list-item-explicit>
+            <list-item-explicit content="Eggs"></list-item-explicit>
+          </div>
+        </td>
+        <td>
+          <pre>
+            <code>
+              &lt;div role="list"&gt;
+                &lt;list-item-explicit content="Butter"&gt;&lt;/list-item-explicit&gt;
+                &lt;list-item-explicit content="Sugar"&gt;&lt;/list-item-explicit&gt;
+                &lt;list-item-explicit content="Eggs"&gt;&lt;/list-item-explicit&gt;
+              &lt;/div&gt;
+            </code>
+          </pre>
+        </td>
+        <td>
+          <pre>
+            <code>
+              &lt;div role="list"&gt;
+                &lt;list-item-explicit content="Butter"&gt;
+                  #shadow-root (open)
+                    &lt;div role="listitem"&gt;Butter&lt;/div&gt;
+                &lt;/list-item-explicit&gt;
+                &lt;list-item-explicit content="Sugar"&gt;
+                  #shadow-root (open)
+                    &lt;div role="listitem"&gt;Sugar&lt;/div&gt;
+                &lt;/list-item-explicit&gt;
+                &lt;list-item-explicit content="Eggs"&gt;
+                  #shadow-root (open)
+                    &lt;div role="listitem"&gt;Eggs&lt;/div&gt;
+                &lt;/list-item-explicit&gt;
+              &lt;/div&gt;
+            </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">List with Implicit Roles: Inaccessible</th>
+        <td>
+          <ul>
+            <list-item-implicit content="Flour"></list-item-implicit>
+            <list-item-implicit content="Baking Soda"></list-item-implicit>
+            <list-item-implicit content="Salt"></list-item-implicit>
+          </ul>
+        </td>
+        <td>
+          <pre>
+            <code>
+                &lt;ul&gt;
+                  &lt;list-item-implicit content="Flour"&gt;&lt;/list-item-implicit&gt;
+                  &lt;list-item-implicit content="Baking Soda"&gt;&lt;/list-item-implicit&gt;
+                  &lt;list-item-implicit content="Salt"&gt;&lt;/list-item-implicit&gt;
+                &lt;/ul&gt;
+            </code>
+          </pre>
+        </td>
+        <td>
+          <pre>
+            <code>
+              &lt;ul&gt;
+                &lt;list-item-implicit content="Flour"&gt;
+                  #shadow-root (open)
+                    &lt;li&gt;Flour&lt;/li&gt;
+                &lt;/list-item-implicit&gt;
+                &lt;list-item-implicit content="Baking Soda"&gt;
+                  #shadow-root (open)
+                    &lt;li&gt;Baking Soda&lt;/li&gt;
+                &lt;/list-item-implicit&gt;
+                &lt;list-item-implicit content="Salt"&gt;
+                  #shadow-root (open)
+                    &lt;li&gt;Salt&lt;/li&gt;
+                &lt;/list-item-explicit&gt;
+              &lt;/ul&gt;
+            </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Input with Global HTML Attribute Property (no getter/setter): Inaccessible</th>
+        <td>
+          <input-html-attr aria-checked="true"></input-html-attr>
+        </td>
+        <td>
+          <pre>
+            <code>
+              &lt;input-html-attr aria-checked="true"&gt;&lt;/input-html-attr&gt;
+            </code>
+          </pre>
+        </td>
+        <td>
+          <pre>
+            <code>
+              &lt;input-html-attr aria-checked="true"&gt;
+                #shadow-root
+                  &lt;input type="checkbox" id="html-wow" aria-checked="true"&gt;&lt;/input&gt;
+                  &lt;label for="html-wow"&gt;Sign me up!&lt;/label&gt;
+              &lt;/input-html-attr&gt;
+            </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">WIP - Input with Camel Case Property: Accessible</th>
+        <td>
+          <input-attr-a11y></input-attr-a11y>
+          <script>
+            document.querySelector('input-attr-a11y')['aria-checked'] = true;
+          </script>
+        </td>
+        <td>
+          <pre>
+            <code>
+              &lt;input-attr-a11y&gt;&lt;/input-attr-a11y&gt;
+              &lt;script&gt;
+                document.querySelector('input-attr-a11y')['aria-checked'] = true;
+              &lt;/script&gt;
+            </code>
+          </pre>
+        </td>
+        <td>
+          <pre>
+            <code>
+              &lt;input-attr-a11y ariaChecked="true"&gt;
+                #shadow-root
+                  &lt;input type="checkbox" id="camel-wow" aria-checked="true"&gt;&lt;/input&gt;
+                  &lt;label for="camel-wow"&gt;Sign me up!&lt;/label&gt;
+              &lt;/input-attr-a11y&gt;
+            </code>
+          </pre>
+        </td>
+      </tr>
+      <!-- <tr>
+        <th scope="row"></th>
+        <td></td>
+        <td>
+          <pre><code></code></pre>
+        </td>
+        <td>
+          <pre><code></code></pre>
+        </td>
+      </tr> -->
+    </tbody>
+  </table>
 </body>
 
 </html>
