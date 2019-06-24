@@ -1,6 +1,3 @@
-
-// dynamically makes table cells
-
 const examples = [
   {
     name: 'Input & Label: Accessible',
@@ -71,13 +68,18 @@ const examples = [
 </input-html-attr>`,
   }, {
     name: 'WIP - Input with Camel Case Property: Accessible',
-    html: `<input-attr-a11y></input-attr-a11y>`,
-    renderedHTML: `<input-attr-a11y ariaChecked="true">
+    html: `<input-attr-a11y checked="true"></input-attr-a11y>`,
+    renderedHTML: ``,
+  }, {
+    name: 'Custom Element with Tab Index -1',
+    html: `<tab-index-test tabindex="-1"></tab-index-test>`,
+    renderedHTML: `<tab-index-test tabindex="-1">
   #shadow-root
-    <input type="checkbox" id="camel-wow" aria-checked="true"></input>
-    <label for="camel-wow">Sign me up!</label>
-</input-attr-a11y>`,
-  },
+    <div>
+      <a href="https://www.lightningdesignsystem.com/">Lightning Design System</a>
+    </div>
+</tab-index-test>`,
+  }
 ]
 
 $(document).ready(() => {
@@ -99,3 +101,6 @@ $(document).ready(() => {
     </td>`);
   }
 });
+
+
+// document.querySelector('input-attr-a11y').setAttribute('checked', true);

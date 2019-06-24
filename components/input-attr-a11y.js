@@ -12,26 +12,49 @@ class InputAttrA11y extends HTMLElement {
   }
 
   connectedCallback() {
-    this._shadowRoot.querySelector('input').onclick = function () {
-      console.log('connectedCallback', this['aria-checked'])
-      this['aria-checked'] = !this["aria-checked"];
+    this._upgradeProperty('checked')
+    //if (document.querySelector('input-attr-a11y').hasAttribute('checked')) {
+    //console.log('hasChecked')
+    //this._shadowRoot.querySelector('input').checked = document.querySelector('input-attr-a11y').getAttribute('checked');
+    // document.querySelector('input-attr-a11y').removeAttribute('aria-checked');
+    //}
+  }
+
+  _upgradeProperty(prop) {
+    if (this.hasOwnProperty(prop)) {
+      let value = this[prop];
+      console.log(this)
+      delete this[prop];
+      this[prop] = value;
+      // this._shadowRoot.querySelector('input')[prop] = this[prop];
     }
   }
 
-  get ['aria-checked']() {
-    return this._shadowRoot.querySelector('input').hasAttribute('aria-checked');
+  attributeChangedCallback() {
+    console.log('this.checked', this.checked)
+    //console.log('somethin changed')
+    //if (document.querySelector('input-attr-a11y').hasAttribute('checked')) {
+    //console.log('hasChecked')
+    // this._shadowRoot.querySelector('input').checked = document.querySelector('input-attr-a11y').getAttribute('checked');
+    // document.querySelector('input-attr-a11y').removeAttribute('aria-checked');
+    //}
+    // if ()
   }
 
-  set ['aria-checked'](value) {
-    console.log('set aria-checked')
+  get checked() {
+    return this._shadowRoot.querySelector('input').hasAttribute('checked');
+  }
+
+  set checked(value) {
     let input = this._shadowRoot.querySelector('input');
-    if (input.hasAttribute('aria-checked')) {
-      input.removeAttribute('aria-checked');
-    } else {
-      input.setAttribute('aria-checked', true);
-      this['aria-checked'] = true;
-      console.log('set aria-checked val', !this['aria-checked'])
-    }
+    input.setAttribute('checked', value);
+    // if (input.hasAttribute('checked')) {
+    //   input.removeAttribute('checked');
+    // } else {
+    //   input.setAttribute('checked', true);
+    //   this['checked'] = true;
+    //   console.log('set checked val', !this['checked'])
+    // }
   }
 }
 

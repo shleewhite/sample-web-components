@@ -12,7 +12,7 @@ class InputHTMLAttr extends HTMLElement {
   }
 
   connectedCallback() {
-    this._shadowRoot.querySelector('input').setAttribute('aria-checked', this.getAttribute('aria-checked'));
+    // this._shadowRoot.querySelector('input').setAttribute('aria-checked', this.getAttribute('aria-checked'));
   }
 }
 
