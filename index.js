@@ -79,6 +79,44 @@ const examples = [
       <a href="https://www.lightningdesignsystem.com/">Lightning Design System</a>
     </div>
 </tab-index-test>`,
+  }, {
+    name: 'Slot Test: Accessible',
+    html: `<slot-test>
+  <div role="listitem" slot="items">zumba 1</div>
+  <div role="listitem" slot="items">zumba 2</div>
+  <div role="listitem" slot="items">zumba 3</div>
+</slot-test>`,
+    renderedHTML: `<slot-test>
+  #shadow-root
+    <div role="list">
+      <slot name="items">
+        #div
+        #div
+        #div
+      </slot>
+    </div>
+  <div role="listitem" slot="items">zumba 1</div>
+  <div role="listitem" slot="items">zumba 2</div>
+  <div role="listitem" slot="items">zumba 3</div> 
+</slot-test>`,
+  }, {
+    name: 'Input Slot Test: Accessible',
+    html: `<div>
+  <label for="custom-id-input">City</label>
+  <input-slot-test>
+    <input type="text" class="slds-input" id="custom-id-input" slot="first-input"/>
+  </input-slot-test>
+</div>`,
+    renderedHTML: `<div>
+  <label for="custom-id-input">City</label>
+  <input-slot-test>
+    #shadow-root
+      <div>
+        <slot name="first-input"></slot>
+      </div>
+    <input type="text" class="slds-input" id="custom-id-input" slot="first-input">
+  </input-slot-test>
+</div>`,
   }
 ]
 
@@ -101,6 +139,3 @@ $(document).ready(() => {
     </td>`);
   }
 });
-
-
-// document.querySelector('input-attr-a11y').setAttribute('checked', true);

@@ -9,7 +9,7 @@ No. The browser cannot associate elements across the shadow boundary, even if it
 
 Tested this with the `open-input-only` and `open-input` components.
 
-**`open-input-only`: Not Accessible**
+#### `open-input-only`: Not Accessible
 ```
 <label for="wow">Name</label>
 <open-input>
@@ -18,7 +18,7 @@ Tested this with the `open-input-only` and `open-input` components.
 </open-input>
 ```
 
-**`open-input`: Accessible**
+#### `open-input`: Accessible
 ```
 <open-input>
   #shadow-root (open)
@@ -33,7 +33,7 @@ No. Chrome reads the list properly, but Firefox and Safari do not. For now, it s
 
 Tested this with the `list-item-implicit` and `list-item-explicit` components.
 
-**`list-item-implicit`: Not Accessible**
+#### `list-item-implicit`: Not Accessible
 ```
 <ul>
   <list-item-implicit content="Flour">
@@ -51,7 +51,7 @@ Tested this with the `list-item-implicit` and `list-item-explicit` components.
 </ul>
 ```
 
-**`list-item-explicit`: Accessible**
+#### `list-item-explicit`: Accessible
 ```
 <div role="list">
   <list-item-explicit content="Butter">
@@ -79,7 +79,7 @@ Screen readers and mouse users can still to get to the interactive element, but 
 
 Tested with the `tabindex-test` component.
 
-**`tabindex-test`: Kind of not accessible**
+#### `tabindex-test`: Kind of not accessible
 ```
 <tab-index-test tabindex="-1">
   #shadow-root
@@ -89,8 +89,53 @@ Tested with the `tabindex-test` component.
 </tab-index-test>
 ```
 
-### 4. Can you use global HTML attributes as names for attributes on a custom element to pass information to the shadow tree?
+### 4. [WIP] Can you use global HTML attributes as names for attributes on a custom element to pass information to the shadow tree?
 
 Tentative yes?
 
 Tested with the `input-html-attr` and `input-attr-a11y` components.
+
+### 5. What are HTML slots and templates? What are the differences? What do they do to the DOM and accessibility tree?
+
+Slots and templates are ways of injecting HTML into the custom elements.
+
+Templates put the HTML directly into the shadow DOM but slots put the HTML in the 'light DOM'. Meaning, you can access (with CSS and Javascript) components in slots, but not elements in templates.
+
+Tested with the `slot-test` and `input-slot-test` components.
+
+#### `slot-test`: Accessible
+Even though it looks like the list items are outside of the list in the DOM, they are actually there and work.
+
+```
+<slot-test>
+  #shadow-root
+    <div role="list">
+      <slot name="items">
+        #div
+        #div
+        #div
+      </slot>
+    </div>
+  <div role="listitem" slot="items">zumba 1</div>
+  <div role="listitem" slot="items">zumba 2</div>
+  <div role="listitem" slot="items">zumba 3</div> 
+</slot-test>
+```
+
+#### `input-slot-test`: Accessible
+Since the input is in the light DOM, the label is properly associated with the input.
+
+Notice that I had to add the `slds-input` class to the input. When it is rendered, it had none of the input styles because it inherited the SLDS styles from the page.
+
+```
+<div>
+  <label for="custom-id-input">City</label>
+  <input-slot-test>
+    #shadow-root
+      <div>
+        <slot name="first-input"></slot>
+      </div>
+    <input type="text" class="slds-input" id="custom-id-input" slot="first-input">
+  </input-slot-test>
+</div>
+```
