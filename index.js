@@ -59,13 +59,9 @@ const examples = [
   </list-item-explicit>
 </ul>`,
   }, {
-    name: 'Input with Global HTML Attribute Property (no getter/setter): Inaccessible',
+    name: 'WIP - Input with Global HTML Attribute Property (no getter/setter): Inaccessible',
     html: `<input-html-attr aria-checked="true"></input-html-attr>`,
-    renderedHTML: `<input-html-attr aria-checked="true">
-  #shadow-root
-    <input type="checkbox" id="html-wow" aria-checked="true"></input>
-    <label for="html-wow">Sign me up!</label>
-</input-html-attr>`,
+    renderedHTML: ``,
   }, {
     name: 'WIP - Input with Camel Case Property: Accessible',
     html: `<input-attr-a11y checked="true"></input-attr-a11y>`,
