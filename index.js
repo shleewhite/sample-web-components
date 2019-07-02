@@ -12,10 +12,10 @@ const examples = [
     html: `<label for="wow">Name</label>
 <open-input-only></open-input-only>`,
     renderedHTML: `<label for="wow">Name</label>
-<open-input>
+<open-input-only>
   #shadow-root (open)
     <input id="wow" type="text" />
-</open-input>`,
+</open-input-only>`,
   }, {
     name: 'List with Explicit Roles: Accessible',
     html: `<div role="list">
@@ -108,9 +108,34 @@ const examples = [
   <input-slot-test>
     #shadow-root
       <div>
-        <slot name="first-input"></slot>
+        <slot name="first-input">
+          #input
+        </slot>
       </div>
     <input type="text" class="slds-input" id="custom-id-input" slot="first-input">
+  </input-slot-test>
+</div>`,
+  }, {
+    name: 'Input w/ Shadow Boundary Slot Test: Inaccessible',
+    html: `<div>
+  <label for="custom-id">State</label>
+  <input-slot-test>
+    <open-input-only str="custom-id" slot="first-input"></open-input-only>
+  </input-slot-test>
+</div>`,
+    renderedHTML: `<div>
+  <label for="custom-id">State</label>
+  <input-slot-test>
+    #shadow-root
+      <div>
+        <slot name="first-input">
+          #open-input-only
+        </slot>
+      </div>
+    <open-input-only>
+      #shadow-root (open)
+        <input id="custom-id" type="text" />
+    </open-input-only>
   </input-slot-test>
 </div>`,
   }
