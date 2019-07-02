@@ -1,62 +1,62 @@
 const examples = [
   {
     name: 'Input & Label: Accessible',
-    html: `<open-input></open-input>`,
-    renderedHTML: `<open-input>
+    html: `<custom-input cid="input-1" label="First Name"></custom-input>`,
+    renderedHTML: `<custom-input>
   #shadow-root (open)
-    <label for="open-wow">Name</label>
-    <input id="open-wow" type="text" />
-</open-input>`
+    <label for="input-1">First Name</label>
+    <input id="input-1" type="text" />
+</custom-input>`
   }, {
     name: 'Input Only: Inaccessible',
-    html: `<label for="wow">Name</label>
-<open-input-only></open-input-only>`,
-    renderedHTML: `<label for="wow">Name</label>
-<open-input-only>
+    html: `<label for="input-2">Last Name</label>
+<custom-input cid="input-2"></custom-input>`,
+    renderedHTML: `<label for="input-2">Last Name</label>
+<custom-input>
   #shadow-root (open)
-    <input id="wow" type="text" />
-</open-input-only>`,
+    <input id="input-1" type="text" />
+</custom-input>`,
   }, {
     name: 'List with Explicit Roles: Accessible',
     html: `<div role="list">
-  <list-item-explicit content="Butter"></list-item-explicit>
-  <list-item-explicit content="Sugar"></list-item-explicit>
-  <list-item-explicit content="Eggs"></list-item-explicit>
+  <custom-list-item content="Butter" isexplicit></custom-list-item>
+  <custom-list-item content="Sugar" isexplicit></custom-list-item>
+  <custom-list-item content="Eggs" isexplicit></custom-list-item>
 </div>`,
     renderedHTML: `<div role="list">
-  <list-item-explicit content="Butter">
+  <custom-list-item content="Butter" isexplicit>
     #shadow-root (open)
       <div role="listitem">Butter</div>
-  </list-item-explicit>
-  <list-item-explicit content="Sugar">
+  </custom-list-item>
+  <custom-list-item content="Sugar" isexplicit>
     #shadow-root (open)
       <div role="listitem">Sugar</div>
-  </list-item-explicit>
-  <list-item-explicit content="Eggs">
+  </custom-list-item>
+  <custom-list-item content="Eggs" isexplicit>
     #shadow-root (open)
       <div role="listitem">Eggs</div>
-  </list-item-explicit>
+  </custom-list-item>
 </div>`,
   }, {
     name: 'List with Implicit Roles: Inaccessible',
     html: `<ul>
-  <list-item-implicit content="Flour"></list-item-implicit>
-  <list-item-implicit content="Baking Soda"></list-item-implicit>
-  <list-item-implicit content="Salt"></list-item-implicit>
+  <custom-list-item content="Flour"></custom-list-item>
+  <custom-list-item content="Baking Soda"></custom-list-item>
+  <custom-list-item content="Salt"></custom-list-item>
 </ul>`,
     renderedHTML: `<ul>
-  <list-item-implicit content="Flour">
+  <custom-list-item content="Flour">
     #shadow-root (open)
       <li>Flour</li>
-  </list-item-implicit>
-  <list-item-implicit content="Baking Soda">
+  </custom-list-item>
+  <custom-list-item content="Baking Soda">
     #shadow-root (open)
       <li>Baking Soda</li>
-  </list-item-implicit>
-  <list-item-implicit content="Salt">
+  </custom-list-item>
+  <custom-list-item content="Salt">
     #shadow-root (open)
       <li>Salt</li>
-  </list-item-explicit>
+  </custom-list-item>
 </ul>`,
   }, {
     name: 'WIP - Input with Global HTML Attribute Property (no getter/setter): Inaccessible',
@@ -68,21 +68,20 @@ const examples = [
     renderedHTML: ``,
   }, {
     name: 'Custom Element with Tab Index -1',
-    html: `<tab-index-test tabindex="-1"></tab-index-test>`,
-    renderedHTML: `<tab-index-test tabindex="-1">
-  #shadow-root
-    <div>
-      <a href="https://www.lightningdesignsystem.com/">Lightning Design System</a>
-    </div>
-</tab-index-test>`,
+    html: `<custom-input cid="input-4" label="Favorite Color" tabindex="-1"></custom-input>`,
+    renderedHTML: `<custom-input tabindex="-1">
+  #shadow-root (open)
+    <label for="input-4">Favorite Color</label>
+    <input id="input-4" type="text" />
+</custom-input>`,
   }, {
     name: 'Slot Test: Accessible',
-    html: `<slot-test>
+    html: `<custom-list>
   <div role="listitem" slot="items">zumba 1</div>
   <div role="listitem" slot="items">zumba 2</div>
   <div role="listitem" slot="items">zumba 3</div>
-</slot-test>`,
-    renderedHTML: `<slot-test>
+</custom-list>`,
+    renderedHTML: `<custom-list>
   #shadow-root
     <div role="list">
       <slot name="items">
@@ -94,48 +93,48 @@ const examples = [
   <div role="listitem" slot="items">zumba 1</div>
   <div role="listitem" slot="items">zumba 2</div>
   <div role="listitem" slot="items">zumba 3</div> 
-</slot-test>`,
+</custom-list>`,
   }, {
     name: 'Input Slot Test: Accessible',
     html: `<div>
-  <label for="custom-id-input">City</label>
-  <input-slot-test>
-    <input type="text" class="slds-input" id="custom-id-input" slot="first-input"/>
-  </input-slot-test>
+  <label for="input-5">City</label>
+  <custom-input useslot>
+    <input type="text" class="slds-input" id="input-5" slot="input-slot"/>
+  </custom-input>
 </div>`,
     renderedHTML: `<div>
-  <label for="custom-id-input">City</label>
-  <input-slot-test>
+  <label for="input-5">City</label>
+  <custom-input>
     #shadow-root
       <div>
-        <slot name="first-input">
+        <slot name="input-slot">
           #input
         </slot>
       </div>
-    <input type="text" class="slds-input" id="custom-id-input" slot="first-input">
-  </input-slot-test>
+    <input type="text" class="slds-input" id="input-5" slot="input-slot">
+  </custom-input>
 </div>`,
   }, {
     name: 'Input w/ Shadow Boundary Slot Test: Inaccessible',
     html: `<div>
-  <label for="custom-id">State</label>
+  <label for="input-3">State</label>
   <input-slot-test>
-    <open-input-only str="custom-id" slot="first-input"></open-input-only>
+    <custom-input cid="input-3" slot="first-input"></custom-input>
   </input-slot-test>
 </div>`,
     renderedHTML: `<div>
-  <label for="custom-id">State</label>
+  <label for="input-3">State</label>
   <input-slot-test>
-    #shadow-root
+    #shadow-root (open)
       <div>
         <slot name="first-input">
-          #open-input-only
+          #custom-input
         </slot>
       </div>
-    <open-input-only>
+    <custom-input>
       #shadow-root (open)
-        <input id="custom-id" type="text" />
-    </open-input-only>
+        <input id="input-3" type="text" />
+    </custom-input>
   </input-slot-test>
 </div>`,
   }
