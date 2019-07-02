@@ -125,7 +125,7 @@ Even though it looks like the list items are outside of the list in the DOM, the
 #### `input-slot-test`: Accessible
 Since the input is in the light DOM, the label is properly associated with the input.
 
-Notice that I had to add the `slds-input` class to the input. When it is rendered, it had none of the input styles because it inherited the SLDS styles from the page.
+Notice that I had to add the `slds-input` class to the input. When it is rendered, it had none of the default input styles because it inherited the SLDS styles from the page.
 
 ```
 <div>
