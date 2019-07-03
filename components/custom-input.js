@@ -1,7 +1,28 @@
+let input_template = document.createElement('template');
+input_template.innerHTML = `<div>
+  <style>
+    input, label {
+      margin: 1rem;
+      margin-left: 0;
+    }
+    label { font-weight: bold; }
+    input { 
+      font-size: 0.825rem;
+      line-height: 1.5;
+      margin-right: 0; 
+      padding: 0.25rem;
+    }
+    input:focus {
+      outline: 4px solid purple;
+    }
+  </style>
+</div>`
+
 class CustomInput extends HTMLElement {
   constructor() {
     super();
     this._shadowRoot = this.attachShadow({ 'mode': 'open' });
+    this._shadowRoot.appendChild(input_template.content.cloneNode(true));
   }
 
   connectedCallback() {
@@ -23,11 +44,11 @@ class CustomInput extends HTMLElement {
         let label = document.createElement('label');
         label.innerHTML = `${this.getAttribute('label')}`
         label.htmlFor = this.getAttribute('cid');
-        this._shadowRoot.appendChild(label)
+        this._shadowRoot.querySelector('div').appendChild(label)
       }
     }
 
-    this._shadowRoot.appendChild(input)
+    this._shadowRoot.querySelector('div').appendChild(input)
   }
 }
 

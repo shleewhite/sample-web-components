@@ -9,9 +9,9 @@ const examples = [
 </custom-input>`
   }, {
     name: 'Input Only: Inaccessible',
-    html: `<label for="input-2">Last Name</label>
+    html: `<label for="input-2" class="custom-label">Last Name</label>
 <custom-input cid="input-2"></custom-input>`,
-    renderedHTML: `<label for="input-2">Last Name</label>
+    renderedHTML: `<label for="input-2" class="custom-label">Last Name</label>
 <custom-input>
   #shadow-root (open)
     <input id="input-1" type="text" />
@@ -59,14 +59,6 @@ const examples = [
   </custom-list-item>
 </ul>`,
   }, {
-    name: 'WIP - Input with Global HTML Attribute Property (no getter/setter): Inaccessible',
-    html: `<input-html-attr aria-checked="true"></input-html-attr>`,
-    renderedHTML: ``,
-  }, {
-    name: 'WIP - Input with Camel Case Property: Accessible',
-    html: `<input-attr-a11y checked="true"></input-attr-a11y>`,
-    renderedHTML: ``,
-  }, {
     name: 'Custom Element with Tab Index -1',
     html: `<custom-input cid="input-4" label="Favorite Color" tabindex="-1"></custom-input>`,
     renderedHTML: `<custom-input tabindex="-1">
@@ -97,13 +89,13 @@ const examples = [
   }, {
     name: 'Input Slot Test: Accessible',
     html: `<div>
-  <label for="input-5">City</label>
+  <label for="input-5" class="custom-label">City</label>
   <custom-input useslot>
     <input type="text" class="slds-input" id="input-5" slot="input-slot"/>
   </custom-input>
 </div>`,
     renderedHTML: `<div>
-  <label for="input-5">City</label>
+  <label for="input-5" class="custom-label">City</label>
   <custom-input>
     #shadow-root
       <div>
@@ -117,7 +109,7 @@ const examples = [
   }, {
     name: 'Input w/ Shadow Boundary Slot Test: Inaccessible',
     html: `<div>
-  <label for="input-3">State</label>
+  <label for="input-3" class="custom-label" class="custom-label">State</label>
   <input-slot-test>
     <custom-input cid="input-3" slot="first-input"></custom-input>
   </input-slot-test>
@@ -137,6 +129,35 @@ const examples = [
     </custom-input>
   </input-slot-test>
 </div>`,
+  }, {
+    name: 'List w/ Slot and Shadow Boundary: Accessible',
+    html: `<custom-list>
+  <custom-list-item content="Water" isexplicit slot="items"></custom-list-item>
+  <custom-list-item content="Milk" isexplicit slot="items"></custom-list-item>
+  <custom-list-item content="Juice" isexplicit slot="items"></custom-list-item>
+</custom-list>`,
+    renderedHTML: `<custom-list>
+  #shadow-root
+    <div role="list">
+      <slot name="items">
+        #custom-list-item
+        #custom-list-item
+        #custom-list-item
+      </slot>
+    </div>  
+  <custom-list-item content="Water" isexplicit slot="items">
+    #shadow-root (open)
+      <div role="listitem">Water</div>
+  </custom-list-item>
+  <custom-list-item content="Milk" isexplicit slot="items">
+    #shadow-root (open)
+      <div role="listitem">Water</div>
+  </custom-list-item>
+  <custom-list-item content="Juice" isexplicit slot="items">
+    #shadow-root (open)
+      <div role="listitem">Juice</div>
+  </custom-list-item>
+</custom-list>`,
   }
 ]
 
