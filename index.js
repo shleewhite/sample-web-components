@@ -158,6 +158,10 @@ const examples = [
       <div role="listitem">Juice</div>
   </custom-list-item>
 </custom-list>`,
+  }, {
+    name: 'Button w/ Global HTML Attribute: Inaccessible',
+    html: `<custom-button aria-checked="true"></custom-button>`,
+    renderedHTML: ``,
   }
 ]
 
